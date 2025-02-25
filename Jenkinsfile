@@ -1,17 +1,19 @@
 pipeline {
     agent any
-    stages {
-        stage('Build') {
-            steps {
-                //
-                echo "Building"
-                try {
-                      sh './gradlew build --no-daemon'
-                } catch (e) {
-                      error("Gradle build failed: ${e.getMessage()}")
-                }
-            }
-        }
+     stages {
+         stage('Build') {
+             steps {
+                 echo "Building"
+                 script {
+                     try {
+                         sh './gradlew build --no-daemon'
+                     } catch (e) {
+                         error("Gradle build failed: ${e.getMessage()}")
+                     }
+                 }
+             }
+         }
+     }
         stage('Test') {
             steps {
                 //
@@ -24,5 +26,4 @@ pipeline {
                  echo "Deploying"
             }
         }
-    }
 }
