@@ -5,9 +5,11 @@ pipeline {
             steps {
                 //
                 echo "Building"
-                script {
-                sh './gradlew build --no-daemon'
-                }
+                try {
+                                      sh './gradlew build --no-daemon'
+                                  } catch (e) {
+                                      error("Gradle build failed: ${e.getMessage()}")
+                                  }
             }
         }
         stage('Test') {
