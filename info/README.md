@@ -8,3 +8,5 @@ https://howtodoinjava.com/devops/setup-jenkins-pipeline-for-spring-boot-app/
 -B -DskipTests clean package
 
 ./gradlew run bootJar
+./gradlew bootJar
+./gradlew build
