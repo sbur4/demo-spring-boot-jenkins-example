@@ -6,7 +6,11 @@ pipeline {
                  echo "Building"
                  script {
                      try {
-                         sh './gradlew build --no-daemon'
+                       if (isUnix()) {
+                                                   sh './gradlew build --no-daemon'
+                                               } else {
+                                                   bat 'gradlew.bat build --no-daemon'
+                                               }
                      } catch (e) {
                          error("Gradle build failed: ${e.getMessage()}")
                      }
